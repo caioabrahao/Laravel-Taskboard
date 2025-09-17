@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl">Novo Projeto</h2>
+        <h2 class="font-semibold text-xl"><i class="ri-add-circle-fill"></i> Novo Projeto</h2>
     </x-slot>
 
     <form action="{{ route('projects.store') }}" method="POST" class="space-y-4">
