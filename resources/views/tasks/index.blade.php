@@ -7,6 +7,10 @@
         <a href="{{ route('projects.tasks.create', $project) }}" class="px-4 py-2 bg-blue-600 text-white rounded">+ Nova Tarefa</a>
     </div>
 
+    @if ($tasks->isEmpty())
+            <p>Nenhuma tarefa encontrada.</p>
+    @endif
+
     <ul class="space-y-2">
         @foreach ($tasks as $task)
             <li class="p-4 bg-white shadow rounded flex justify-between items-center">
