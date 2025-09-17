@@ -18,3 +18,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\TaskController;
+
+Route::middleware('auth')->group(function () {
+    Route::resource('projects', ProjectController::class);
+    Route::resource('projects.tasks', TaskController::class);
+});

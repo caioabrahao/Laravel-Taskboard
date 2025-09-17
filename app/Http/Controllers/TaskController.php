@@ -3,32 +3,35 @@
 namespace App\Http\Controllers;
 
 use App\Models\Task;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    
+    public function index(Project $project)
     {
-        //
+        $tasks = $project->tasks()->latest()->get();
+        return view('tasks.index', compact('project', 'tasks'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
+    
+    public function create(Project $project)
     {
-        //
+        return view('tasks.create', compact('project'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function store(Request $request, Project $project)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255'
+        ]);
+
+        $project->tasks()->create([
+            'title' => $request->title,
+        ]);
+
+        return redirect()->route('projects.tasks.index', $project)->with('success', 'Tarefa criada!');
     }
 
     /**
@@ -39,27 +42,29 @@ class TaskController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Task $task)
+    public function edit(Project $project, Task $task)
     {
-        //
+        return view('tasks.edit', compact('project', 'task'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Project $project, Task $task)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'done' => 'nullable|boolean'
+        ]);
+
+        $task->update([
+            'title' => $request->title,
+            'done' => $request->has('done'),
+        ]);
+
+        return redirect()->route('projects.tasks.index', $project)->with('success', 'Tarefa atualizada!');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Task $task)
+    public function destroy(Project $project, Task $task)
     {
-        //
+        $task->delete();
+        return redirect()->route('projects.tasks.index', $project)->with('success', 'Tarefa excluída!');
     }
 }
