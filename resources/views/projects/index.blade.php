@@ -8,6 +8,10 @@
     </div>
 
     <ul class="space-y-2">
+        @if ($projects->isEmpty())
+            <p>Nenhum projeto encontrado.</p>
+        @endif
+
         @foreach ($projects as $project)
             <li class="p-4 bg-white shadow rounded flex justify-between items-center">
                 <div>
