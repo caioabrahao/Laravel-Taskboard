@@ -4,7 +4,8 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "setup": "composer install && npm install && npm run build && cp .env.example .env && php artisan key:generate && php artisan migrate"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
