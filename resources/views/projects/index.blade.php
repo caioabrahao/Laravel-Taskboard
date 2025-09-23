@@ -9,7 +9,7 @@
 
     <ul class="space-y-2">
         @if ($projects->isEmpty())
-            <p>Nenhum projeto encontrado.</p>
+            <p class="text-gray-500">Nenhum projeto encontrado. Crie um novo projeto no botão acima!</p>
         @endif
 
         @foreach ($projects as $project)

@@ -5,11 +5,7 @@
 
     <h1 class="font-semibold text-3xl">{{ $project->name }}</h1>
 
-    <p class="mb-4 text-gray-600">{{ $project->description }}</p>
-
-    <a href="{{ route('projects.tasks.index', $project) }}" class="px-4 py-2 bg-green-600 text-white rounded">
-        Ver Tarefas
-    </a>
+    <p class="mb-4 text-gray-600">Descrição: {{ $project->description }}</p>
 
     <div class="mb-4">
         <h2 class="font-semibold text-xl mt-6 mb-2">Tarefas:</h2>

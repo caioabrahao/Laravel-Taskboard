@@ -31,7 +31,7 @@ class TaskController extends Controller
             'title' => $request->title,
         ]);
 
-        return redirect()->route('projects.tasks.index', $project)->with('success', 'Tarefa criada!');
+        return redirect()->route('projects.show', $project)->with('success', 'Tarefa criada!');
     }
 
     /**
